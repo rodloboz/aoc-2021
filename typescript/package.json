@@ -14,7 +14,7 @@
     "prettier:write": "yarn prettier:base --write",
     "prettier:base": "prettier --ignore-path .gitignore --ignore-unknown .",
     "prettier": "yarn prettier:base --check",
-    "test": "jest"
+    "test": "jest",
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",

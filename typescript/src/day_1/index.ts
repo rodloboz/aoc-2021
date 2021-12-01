@@ -1,24 +1,26 @@
 import * as path from 'path';
-import * as fs from 'fs';
+import { promises as fs } from 'fs';
 
 import { measureIncrements, slidingWindowIncreases } from './sonar';
+
+const readData = async () => {
+  const data = await fs.readFile(filepath, 'utf8');
+  return Buffer.from(data).toString('utf-8').replace(/\r\n/g,'\n').split('\n').map(line => parseInt(line, 10))
+}
 
 const filepath = path.join(
   __dirname,
   '../../..',
   'data',
-  'dat_1',
-  'inputs.txt',
+  'day_1',
+  'input.txt',
 );
 
-// const inputs: number[] = fs.readFile(filepath, (_err, data) => {
-//   return data
-//     .toString()
-//     .replace(/\r\n/g,'\n')
-//     .split('\n')
-//     .map(line => parseInt(line, 10))
-// });
+readData().then(inputs => {
+  const result = measureIncrements(inputs);
+  const window = slidingWindowIncreases(inputs);
 
-// const result = measureIncrements(inputs);
+  console.log(`Increases: ${result} | Window: ${window}`);
+})
 
 
