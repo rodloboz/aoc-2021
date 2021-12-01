@@ -1,0 +1,32 @@
+{
+  "name": "advent-of-code-2021",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "rodloboz",
+  "license": "MIT",
+  "scripts": {
+    "----------------LINTING----------------": ".",
+    "checktypes": "tsc --noEmit",
+    "eslint:fix": "eslint --fix .",
+    "eslint": "eslint .",
+    "lint": "run-p --aggregate-output --print-label eslint prettier checktypes",
+    "lint:fix": "run-p --aggregate-output --print-label eslint:fix prettier:write",
+    "prettier:write": "yarn prettier:base --write",
+    "prettier:base": "prettier --ignore-path .gitignore --ignore-unknown .",
+    "prettier": "yarn prettier:base --check",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "eslint": "^8.3.0",
+    "jest": "^27.4.3",
+    "prettier": "^2.5.0",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "ts-node": "^10.4.0"
+  }
+}
