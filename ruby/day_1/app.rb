@@ -2,7 +2,7 @@
 
 require_relative './sonar'
 
-file = File.open('input.txt')
+file = File.expand_path('../../data/day_1/input.txt', File.dirname(__FILE__))
 inputs = File.read(file).split.map(&:to_i)
 
 result = measurement_increases(inputs)

@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-require_relative '../../day-1/sonar'
+require_relative '../../day_1/sonar'
 
-RSpec.describe 'day-1' do
+RSpec.describe 'day_1' do
   describe '#measurement_increases' do
     it 'returns the number of times a depth measurement increases' do
       inputs = [

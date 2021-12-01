@@ -1,6 +1,6 @@
-defmodule Day1Test do
+defmodule SonarTest do
   use ExUnit.Case
-  doctest Day1
+  doctest Sonar
 
   test "#measurement_increases" do
     inputs = [
@@ -16,7 +16,7 @@ defmodule Day1Test do
       263
     ]
 
-    assert Day1.measurement_increases(inputs) == 7
+    assert Sonar.measurement_increases(inputs) == 7
   end
 
   test "#sliding_window_increases" do
@@ -33,6 +33,6 @@ defmodule Day1Test do
       263
     ]
 
-    assert Day1.sliding_window_increases(inputs) == 5
+    assert Sonar.sliding_window_increases(inputs) == 5
   end
 end
