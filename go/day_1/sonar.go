@@ -18,3 +18,13 @@ func MeasurementIncreases(inputs []int) int {
 
 	return counter
 }
+
+func SlidingWindowIncreases(inputs []int) int {
+	var sums []int
+
+	for i := 0; i < len(inputs)-2; i++ {
+		sums = append(sums, inputs[i]+inputs[i+1]+inputs[i+2])
+	}
+
+	return MeasurementIncreases(sums)
+}
