@@ -1,10 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"strconv"
+	"strings"
+)
 
 func main() {
-	inputs := []int{2, 3, 5, 7, 11, 13}
-	fmt.Println(MeasurementIncreases(inputs))
+	absPath, _ := filepath.Abs("../../data/day_1/input.txt")
+	content, _ := os.ReadFile(absPath)
+	lines := strings.Split(string(content), "\n")
+	var inputs []int
+
+	for i := 0; i < len(lines); i++ {
+		input, _ := strconv.Atoi(lines[i])
+		inputs = append(inputs, input)
+	}
+
+	result := MeasurementIncreases(inputs)
+	window := SlidingWindowIncreases(inputs)
+
+	s := fmt.Sprintf("Increases: %d | Window: %d", result, window)
+
+	fmt.Println(s)
 }
 
 func MeasurementIncreases(inputs []int) int {
