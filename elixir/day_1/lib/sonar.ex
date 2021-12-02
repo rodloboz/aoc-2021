@@ -13,12 +13,15 @@ defmodule Sonar do
   end
 
   def measurement_increases(inputs) do
-    Sonar.Measurement.count_increases(inputs)
+    inputs
+    |> Enum.chunk_every(2, 1, :discard)
+    |> Enum.count(fn [left, right] -> right > left end)
   end
 
   def sliding_window_increases(inputs) do
     inputs
-    |> Sonar.Utils.sum_each_cons_three()
+    |> Enum.chunk_every(3, 1, :discard)
+    |> Enum.map(&Enum.sum/1)
     |> measurement_increases
   end
 
