@@ -6,7 +6,7 @@ require_relative '../../day_2/submarine'
 
 RSpec.describe 'day_2' do
   describe '#calculate_position_and_depth' do
-    it 'returns the horizontal position and depth after a planner course' do
+    it 'returns the horizontal position and depth after a planned course' do
       inputs = [
         ['forward', 5],
         ['down', 5],
@@ -21,7 +21,7 @@ RSpec.describe 'day_2' do
   end
 
   describe '#advanced_calculate_position_and_depth' do
-    it 'returns the horizontal position and depth after a planner course' do
+    it 'returns the horizontal position and depth after a planned course' do
       inputs = [
         ['forward', 5],
         ['down', 5],
