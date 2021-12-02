@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 def measurement_increases(inputs)
-  inputs.each_with_index.reduce(0) do |counter, (input, index)|
-    if !index.zero? && input > inputs[index - 1]
-      counter + 1
-    else
-      counter
-    end
+  inputs.each_cons(2).reduce(0) do |acc, (previous, current)|
+    current > previous ? acc + 1 : acc
   end
 end
 
