@@ -7,16 +7,23 @@ defmodule Sonar do
 
   def process_inputs do
     result = read_inputs() |> measurement_increases()
+    window = read_inputs() |> sliding_window_increases()
 
-    IO.puts("Increases: #{result}")
+    IO.puts("Increases: #{result} | Window: #{window}")
   end
 
   def measurement_increases(inputs) do
     Sonar.Measurement.count_increases(inputs)
   end
 
-  def sliding_window_increases(_inputs) do
-    0
+  def sliding_window_increases(inputs) do
+    inputs
+    |> Enum.drop(-2)
+    |> Enum.with_index(0)
+    |> Enum.map(fn {input, index} ->
+      input + Enum.at(inputs, index + 1) + Enum.at(inputs, index + 2)
+    end)
+    |> measurement_increases
   end
 
   defp read_inputs do
