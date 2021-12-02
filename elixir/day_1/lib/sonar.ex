@@ -18,11 +18,7 @@ defmodule Sonar do
 
   def sliding_window_increases(inputs) do
     inputs
-    |> Enum.drop(-2)
-    |> Enum.with_index(0)
-    |> Enum.map(fn {input, index} ->
-      input + Enum.at(inputs, index + 1) + Enum.at(inputs, index + 2)
-    end)
+    |> Sonar.Utils.sum_each_cons_three()
     |> measurement_increases
   end
 
