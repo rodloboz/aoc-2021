@@ -78,4 +78,64 @@ RSpec.describe 'day_3' do
       expect(calculate_power_consumption(inputs)).to eq(198)
     end
   end
+
+  describe '#calculate_oxygen_generator_rating' do
+    it 'returns the oxygen generator rating of the submarine' do
+      inputs = %w[
+        00100
+        11110
+        10110
+        10111
+        10101
+        01111
+        00111
+        11100
+        10000
+        11001
+        00010
+        01010
+      ]
+      expect(calculate_oxygen_generator_rating(inputs)).to eq(23)
+    end
+  end
+
+  describe '#calculate_co2_scrubber_rating' do
+    it 'returns the CO2 scrubber rating of the submarine' do
+      inputs = %w[
+        00100
+        11110
+        10110
+        10111
+        10101
+        01111
+        00111
+        11100
+        10000
+        11001
+        00010
+        01010
+      ]
+      expect(calculate_co2_scrubber_rating(inputs)).to eq(10)
+    end
+  end
+
+  describe '#calculate_life_support_rating' do
+    it 'returns the life support rating of the submarine' do
+      inputs = %w[
+        00100
+        11110
+        10110
+        10111
+        10101
+        01111
+        00111
+        11100
+        10000
+        11001
+        00010
+        01010
+      ]
+      expect(calculate_life_support_rating(inputs)).to eq(230)
+    end
+  end
 end
