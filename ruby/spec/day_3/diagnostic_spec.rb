@@ -5,21 +5,21 @@ require 'spec_helper'
 require_relative '../../day_3/diagnostic'
 
 RSpec.describe 'day_3' do
-  describe '#find_most_common_bit' do
+  describe '#most_common_bit' do
     it 'returns the most common bit in the list' do
       bits = %w[0 1 1 1 1 0 0 1 1 1 0 0]
-      expect(find_most_common_bit(bits)).to eq('1')
+      expect(most_common_bit(bits)).to eq('1')
+    end
+
+    it 'can the used to determine the least_common_bit' do
+      bits = %w[0 1 1 1 1 0 0 1 1 1 0 0]
+      least_most_common_bit = most_common_bit(bits) == '1' ? '0' : '1'
+      expect(least_most_common_bit).to eq('0')
+
     end
   end
 
-  describe '#find_least_common_bit' do
-    it 'returns the most common bit in the list' do
-      bits = %w[0 1 1 1 1 0 0 1 1 1 0 0]
-      expect(find_least_common_bit(bits)).to eq('0')
-    end
-  end
-
-  describe '#calculate_gamma_rate' do
+  describe '#gamma_rate' do
     it 'returns the gamma rate of the submarine' do
       inputs = %w[
         00100
@@ -35,11 +35,11 @@ RSpec.describe 'day_3' do
         00010
         01010
       ]
-      expect(calculate_gamma_rate(inputs)).to eq(22)
+      expect(gamma_rate(inputs)).to eq(22)
     end
   end
 
-  describe '#calculate_epsilon_rate' do
+  describe '#epsilon_rate' do
     it 'returns the epsilon rate of the submarine' do
       inputs = %w[
         00100
@@ -55,7 +55,7 @@ RSpec.describe 'day_3' do
         00010
         01010
       ]
-      expect(calculate_epsilon_rate(inputs)).to eq(9)
+      expect(epsilon_rate(inputs)).to eq(9)
     end
   end
 
@@ -79,7 +79,7 @@ RSpec.describe 'day_3' do
     end
   end
 
-  describe '#calculate_oxygen_generator_rating' do
+  describe '#o2_generator_rating' do
     it 'returns the oxygen generator rating of the submarine' do
       inputs = %w[
         00100
@@ -95,11 +95,11 @@ RSpec.describe 'day_3' do
         00010
         01010
       ]
-      expect(calculate_oxygen_generator_rating(inputs)).to eq(23)
+      expect(o2_generator_rating(inputs)).to eq(23)
     end
   end
 
-  describe '#calculate_co2_scrubber_rating' do
+  describe '#co2_scrubber_rating' do
     it 'returns the CO2 scrubber rating of the submarine' do
       inputs = %w[
         00100
@@ -115,7 +115,7 @@ RSpec.describe 'day_3' do
         00010
         01010
       ]
-      expect(calculate_co2_scrubber_rating(inputs)).to eq(10)
+      expect(co2_scrubber_rating(inputs)).to eq(10)
     end
   end
 

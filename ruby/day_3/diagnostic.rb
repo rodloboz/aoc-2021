@@ -1,42 +1,34 @@
-def find_most_common_bit(bits)
+def most_common_bit(bits)
   return '1' if bits.count('1') == bits.count('0')
 
   bits.max_by { |b| bits.count(b) }
 end
 
-def find_least_common_bit(bits)
-  return '0' if bits.count('1') == bits.count('0')
-
-  bits.min_by { |b| bits.count(b) }
-end
-
-def calculate_gamma_rate(inputs)
+def gamma_rate(inputs)
   bits = inputs.map(&:chars)
   bits.transpose.flat_map do |column|
-    find_most_common_bit(column)
+    most_common_bit(column)
   end.join.to_i(2)
 end
 
-def calculate_epsilon_rate(inputs)
+def epsilon_rate(inputs)
   bits = inputs.map(&:chars)
   bits.transpose.flat_map do |column|
-    find_least_common_bit(column)
+    most_common_bit(column) == '1' ? '0' : '1'
   end.join.to_i(2)
 end
 
 def calculate_power_consumption(inputs)
-  gamma_rate = calculate_gamma_rate(inputs)
-  epsilon_rate = calculate_epsilon_rate(inputs)
-  gamma_rate * epsilon_rate
+  gamma_rate(inputs) * epsilon_rate(inputs)
 end
 
-def calculate_oxygen_generator_rating(inputs)
+def o2_generator_rating(inputs)
   bits = inputs.map(&:chars)
 
   index = 0
   size = bits[0].size
   while bits.size != 1
-    bit = find_most_common_bit(bits.transpose[index])
+    bit = most_common_bit(bits.transpose[index])
     bits = bits.select { |b| b[index] == bit }
     index = index == size - 1 ? 0 : index + 1
   end
@@ -44,13 +36,13 @@ def calculate_oxygen_generator_rating(inputs)
   bits.flatten.join.to_i(2)
 end
 
-def calculate_co2_scrubber_rating(inputs)
+def co2_scrubber_rating(inputs)
   bits = inputs.map(&:chars)
 
   index = 0
   size = bits[0].size
   while bits.size != 1
-    bit = find_least_common_bit(bits.transpose[index])
+    bit = most_common_bit(bits.transpose[index]) == '1' ? '0' : '1'
     bits = bits.select { |b| b[index] == bit }
     index = index == size - 1 ? 0 : index + 1
   end
@@ -59,7 +51,5 @@ def calculate_co2_scrubber_rating(inputs)
 end
 
 def calculate_life_support_rating(inputs)
-  oxygen_generator_rating = calculate_oxygen_generator_rating(inputs)
-  co2_scrubber_rating = calculate_co2_scrubber_rating(inputs)
-  oxygen_generator_rating * co2_scrubber_rating
+  o2_generator_rating(inputs) * co2_scrubber_rating(inputs)
 end
