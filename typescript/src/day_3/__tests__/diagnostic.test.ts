@@ -1,6 +1,6 @@
-import { calculatePowerConsumption } from '../diagnostic';
+import { powerConsumption } from '../diagnostic';
 
-describe('calculatePowerConsumption', () => {
+describe('powerConsumption', () => {
   it('returns the power consumption of the submarine', () => {
     const inputs = [
       '00100',
@@ -16,6 +16,6 @@ describe('calculatePowerConsumption', () => {
       '00010',
       '01010'
     ]
-    expect(calculatePowerConsumption(inputs)).toEqual(198)
+    expect(powerConsumption(inputs)).toEqual(198)
   })
 });

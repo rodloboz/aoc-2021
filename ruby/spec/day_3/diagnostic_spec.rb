@@ -59,7 +59,7 @@ RSpec.describe 'day_3' do
     end
   end
 
-  describe '#calculate_power_consumption' do
+  describe '#power_consumption' do
     it 'returns the power consumption of the submarine' do
       inputs = %w[
         00100
@@ -75,7 +75,7 @@ RSpec.describe 'day_3' do
         00010
         01010
       ]
-      expect(calculate_power_consumption(inputs)).to eq(198)
+      expect(power_consumption(inputs)).to eq(198)
     end
   end
 
@@ -119,7 +119,7 @@ RSpec.describe 'day_3' do
     end
   end
 
-  describe '#calculate_life_support_rating' do
+  describe '#life_support_rating' do
     it 'returns the life support rating of the submarine' do
       inputs = %w[
         00100
@@ -135,7 +135,7 @@ RSpec.describe 'day_3' do
         00010
         01010
       ]
-      expect(calculate_life_support_rating(inputs)).to eq(230)
+      expect(life_support_rating(inputs)).to eq(230)
     end
   end
 end

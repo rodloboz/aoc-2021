@@ -18,7 +18,7 @@ def epsilon_rate(inputs)
   end.join.to_i(2)
 end
 
-def calculate_power_consumption(inputs)
+def power_consumption(inputs)
   gamma_rate(inputs) * epsilon_rate(inputs)
 end
 
@@ -50,6 +50,6 @@ def co2_scrubber_rating(inputs)
   bits.flatten.join.to_i(2)
 end
 
-def calculate_life_support_rating(inputs)
+def life_support_rating(inputs)
   o2_generator_rating(inputs) * co2_scrubber_rating(inputs)
 end

@@ -1,4 +1,4 @@
-export const calculatePowerConsumption = (inputs: string[]) : number => {
+export const powerConsumption = (inputs: string[]) : number => {
   const bits: Array<string[]> = inputs.map(input => Array.from(input));
   return gammaRate(bits) * epsilonRate(bits);
 }
