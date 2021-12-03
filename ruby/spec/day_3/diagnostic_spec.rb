@@ -7,15 +7,15 @@ require_relative '../../day_3/diagnostic'
 RSpec.describe 'day_3' do
   describe '#find_most_common_bit' do
     it 'returns the most common bit in the list' do
-      bits = [0,1,1,1,1,0,0,1,1,1,0,0]
-      expect(find_most_common_bit(bits)).to eq(1)
+      bits = %w[0 1 1 1 1 0 0 1 1 1 0 0]
+      expect(find_most_common_bit(bits)).to eq('1')
     end
   end
 
   describe '#find_least_common_bit' do
     it 'returns the most common bit in the list' do
-      bits = [0,1,1,1,1,0,0,1,1,1,0,0]
-      expect(find_least_common_bit(bits)).to eq(0)
+      bits = %w[0 1 1 1 1 0 0 1 1 1 0 0]
+      expect(find_least_common_bit(bits)).to eq('0')
     end
   end
 

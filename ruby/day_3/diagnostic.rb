@@ -1,11 +1,11 @@
 def find_most_common_bit(bits)
-  return "1" if bits.size == 2
+  return '1' if bits.count('1') == bits.count('0')
 
   bits.max_by { |b| bits.count(b) }
 end
 
 def find_least_common_bit(bits)
-  return "0" if bits.size == 2
+  return '0' if bits.count('1') == bits.count('0')
 
   bits.min_by { |b| bits.count(b) }
 end
