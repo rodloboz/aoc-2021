@@ -12,15 +12,15 @@ end
 
 def calculate_gamma_rate(inputs)
   bits = inputs.map(&:chars)
-  (0...bits[0].size).flat_map do |index|
-    find_most_common_bit(bits.transpose[index])
+  bits.transpose.flat_map do |column|
+    find_most_common_bit(column)
   end.join.to_i(2)
 end
 
 def calculate_epsilon_rate(inputs)
   bits = inputs.map(&:chars)
-  (0...bits[0].size).flat_map do |index|
-    find_least_common_bit(bits.transpose[index])
+  bits.transpose.flat_map do |column|
+    find_least_common_bit(column)
   end.join.to_i(2)
 end
 
@@ -35,10 +35,10 @@ def calculate_oxygen_generator_rating(inputs)
 
   index = 0
   size = bits[0].size
-  while index < size && bits.size != 1
+  while bits.size != 1
     bit = find_most_common_bit(bits.transpose[index])
     bits = bits.select { |b| b[index] == bit }
-    index += 1
+    index = index == size - 1 ? 0 : index + 1
   end
 
   bits.flatten.join.to_i(2)
@@ -49,10 +49,10 @@ def calculate_co2_scrubber_rating(inputs)
 
   index = 0
   size = bits[0].size
-  while index < size && bits.size != 1
+  while bits.size != 1
     bit = find_least_common_bit(bits.transpose[index])
     bits = bits.select { |b| b[index] == bit }
-    index += 1
+    index = index == size - 1 ? 0 : index + 1
   end
 
   bits.flatten.join.to_i(2)
