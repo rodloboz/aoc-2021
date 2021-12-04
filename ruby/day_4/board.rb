@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
-require_relative './row'
-require_relative './column'
+require_relative './board_array'
 
 class Board
   attr_reader :rows, :columns
 
   def initialize(rows, columns)
-    @rows = rows.map { |row| Row.new(row) }
-    @columns = columns.map { |column| Column.new(column) }
+    @rows = rows.map { |row| BoardArray.new(row) }
+    @columns = columns.map { |column| BoardArray.new(column) }
     @completed = false
     @locked = false
   end
