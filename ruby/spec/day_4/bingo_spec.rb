@@ -5,10 +5,10 @@ require 'spec_helper'
 require_relative '../../day_4/bingo'
 
 RSpec.describe 'day_4' do
-  describe 'Bingo' do
-    subject(:bingo) { Bingo.new(boards, draw) }
+  describe Bingo do
+    subject(:bingo) { described_class.new(boards, draws) }
 
-    let(:draw) { [7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22, 18, 20, 8, 19, 3, 26, 1] }
+    let(:draws) { [7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22, 18, 20, 8, 19, 3, 26, 1] }
     let(:boards) do
       [
         [
@@ -40,7 +40,7 @@ RSpec.describe 'day_4' do
     end
 
     it 'can calculate the last winning board' do
-      expect(bingo.last_to_win_score).to eq(1924)
+      expect(bingo.last_winning_score).to eq(1924)
     end
   end
 end

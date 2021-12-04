@@ -1,3 +1,5 @@
-require_relative './grid_element'
+# frozen_string_literal: true
 
-class Row < GridElement; end
+require_relative './board_array'
+
+class Row < BoardArray; end

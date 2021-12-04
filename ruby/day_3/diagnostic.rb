@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def most_common_bit(bits)
   return '1' if bits.count('1') == bits.count('0')
 

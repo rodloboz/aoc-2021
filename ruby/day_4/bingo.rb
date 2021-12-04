@@ -1,42 +1,35 @@
+# frozen_string_literal: true
+
 require_relative './board'
 
 class Bingo
-  attr_reader :first_winning_board, :last_winning_board, :current_draw
+  attr_reader :completed_boards, :current_draw
 
-  def initialize(boards, draw)
+  def initialize(boards, draws)
     @boards = boards.map { |board| Board.new(board, board.transpose) }
-    @draw = draw
-    @first_winning_board = nil
-    @last_winning_board = nil
+    @draws = draws
+    @completed_boards = []
+    @winning_draws = []
     @current_draw = nil
+    run_game
   end
 
   def score
-    run_game
-    first_winning_board.score * current_draw
+    completed_boards.first.score * winning_draws.first
   end
 
-  def last_to_win_score
-    run_last_to_win_game
-    last_winning_board.score * current_draw
+  def last_winning_score
+    completed_boards.last.score * winning_draws.last
   end
 
   private
 
-  attr_reader :draw, :boards
+  attr_reader :draws, :boards, :winning_draws
 
   def run_game
-    draw.each do |number|
+    draws.each do |number|
       @current_draw = number
-      mark_boards(number)
-      break if first_winning_board
-    end
-  end
-
-  def run_last_to_win_game
-    draw.each do |number|
-      @current_draw = number
-      mark_boards(number)
+      match_boards(number)
       break if all_boards_locked?
     end
   end
@@ -45,15 +38,15 @@ class Bingo
     boards.all?(&:locked?)
   end
 
-  def mark_boards(number)
+  def match_boards(number)
     boards.each do |board|
       next if board.locked?
 
-      board.mark(number)
+      board.match(number)
 
-      if board.completed?
-        @first_winning_board ||= board
-        @last_winning_board = board
+      if board.locked?
+        completed_boards << board
+        winning_draws << number
       end
     end
   end

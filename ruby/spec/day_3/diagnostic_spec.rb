@@ -15,7 +15,6 @@ RSpec.describe 'day_3' do
       bits = %w[0 1 1 1 1 0 0 1 1 1 0 0]
       least_most_common_bit = most_common_bit(bits) == '1' ? '0' : '1'
       expect(least_most_common_bit).to eq('0')
-
     end
   end
 

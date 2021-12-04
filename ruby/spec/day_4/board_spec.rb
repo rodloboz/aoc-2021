@@ -4,8 +4,8 @@ require 'spec_helper'
 
 require_relative '../../day_4/board'
 
-RSpec.describe 'Board' do
-  subject(:board) { Board.new(rows, columns) }
+RSpec.describe Board do
+  subject(:board) { described_class.new(rows, columns) }
 
   let(:rows) do
     [
@@ -18,28 +18,28 @@ RSpec.describe 'Board' do
   end
   let(:columns) { rows.transpose }
 
-  describe '#mark' do
-    it 'marks drawns numbers' do
-      board.mark(7)
-      board.mark(4)
-      board.mark(9)
-      board.mark(5)
-      board.mark(11)
+  describe '#match' do
+    it 'matches drawn numbers' do
+      board.match(7)
+      board.match(4)
+      board.match(9)
+      board.match(5)
+      board.match(11)
 
-      expect(board.completed?).to eq(false)
+      expect(board.locked?).to eq(false)
 
-      board.mark(17)
-      board.mark(23)
-      board.mark(2)
-      board.mark(0)
-      board.mark(14)
-      board.mark(21)
+      board.match(17)
+      board.match(23)
+      board.match(2)
+      board.match(0)
+      board.match(14)
+      board.match(21)
 
-      expect(board.completed?).to eq(false)
+      expect(board.locked?).to eq(false)
 
-      board.mark(24)
+      board.match(24)
 
-      expect(board.completed?).to eq(true)
+      expect(board.locked?).to eq(true)
       expect(board.score).to eq(188)
     end
   end

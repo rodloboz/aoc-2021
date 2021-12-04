@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './row'
 require_relative './column'
 
@@ -7,27 +9,14 @@ class Board
   def initialize(rows, columns)
     @rows = rows.map { |row| Row.new(row) }
     @columns = columns.map { |column| Column.new(column) }
+    @completed = false
     @locked = false
   end
 
-  def mark(number)
-    rows.each do |row|
-      row.mark(number)
-    end
-
-    columns.each do |column|
-      column.mark(number)
-    end
-
+  def match(number)
+    rows.each { |row| row.match(number) }
+    columns.each { |column| column.match(number) }
     lock! if completed?
-  end
-
-  def completed?
-    rows.any?(&:completed?) || columns.any?(&:completed?)
-  end
-
-  def lock!
-    @locked = true
   end
 
   def locked?
@@ -35,8 +24,16 @@ class Board
   end
 
   def score
-    rows.reduce(0) do |acc, row|
-      row.unmarked_numbers.sum + acc
-    end
+    rows.reduce(0) { |acc, row| row.score + acc }
+  end
+
+  private
+
+  def completed?
+    @completed ||= rows.any?(&:completed?) || columns.any?(&:completed?)
+  end
+
+  def lock!
+    @locked = true
   end
 end

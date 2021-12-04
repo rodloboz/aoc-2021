@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './diagnostic'
 
 file = File.expand_path('../../data/day_3/input.txt', File.dirname(__FILE__))
