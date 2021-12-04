@@ -4,7 +4,6 @@ class BoardArray
   attr_reader :score
 
   def initialize(numbers)
-    @numbers = numbers
     @unmatched = numbers
     @matched = []
     @score = numbers.sum
