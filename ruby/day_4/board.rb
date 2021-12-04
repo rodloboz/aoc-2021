@@ -23,7 +23,7 @@ class Board
   end
 
   def score
-    rows.reduce(0) { |acc, row| row.score + acc }
+    rows.sum(&:score)
   end
 
   private
