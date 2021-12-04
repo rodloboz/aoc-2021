@@ -8,7 +8,6 @@ class Bingo
     @draw = draw
     @first_winning_board = nil
     @last_winning_board = nil
-    @first_winning_draw = nil
     @current_draw = nil
   end
 
@@ -38,11 +37,11 @@ class Bingo
     draw.each do |number|
       @current_draw = number
       mark_boards(number)
-      break if all_board_locked?
+      break if all_boards_locked?
     end
   end
 
-  def all_board_locked?
+  def all_boards_locked?
     boards.all?(&:locked?)
   end
 
