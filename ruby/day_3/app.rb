@@ -2,7 +2,35 @@
 
 require_relative './diagnostic'
 
-file = File.expand_path('../../data/day_3/input.txt', File.dirname(__FILE__))
-inputs = File.read(file).split
+class Day3
+  FILEPATH = '../../data/day_3/input.txt'
 
-puts "Power Consumption: #{power_consumption(inputs)} | Life Support Rating: #{life_support_rating(inputs)}"
+  def self.run
+    new.run
+  end
+
+  def initialize
+    load_input
+  end
+
+  def run
+    {
+      power_consumption: power_consumption(input),
+      life_support_rating: life_support_rating(input)
+    }
+  end
+
+  private
+
+  attr_reader :input
+
+  def load_input
+    filepath = File.expand_path(FILEPATH, File.dirname(__FILE__))
+    @input = File.read(filepath).split
+  end
+end
+
+result = Day3.run
+
+puts "Power Consumption: #{result[:power_consumption]}"
+puts "Life Support Rating: #{result[:life_support_rating]}"
