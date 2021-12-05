@@ -23,6 +23,24 @@ RSpec.describe 'day_5' do
     end
   end
 
+  describe '#count_all_overlaps' do
+    it 'returns the number of points where at least two segments overlap' do
+      input = [
+        [[0, 9], [5, 9]],
+        [[8, 0], [0, 8]],
+        [[9, 4], [3, 4]],
+        [[2, 2], [2, 1]],
+        [[7, 0], [7, 4]],
+        [[6, 4], [2, 0]],
+        [[0, 9], [2, 9]],
+        [[3, 4], [1, 4]],
+        [[0, 0], [8, 8]],
+        [[5, 5], [8, 2]]
+      ]
+      expect(count_all_overlaps(input)).to eq(12)
+    end
+  end
+
   describe '#select_horz_vert' do
     it 'returns only horizontal and vertical segments' do
       input = [

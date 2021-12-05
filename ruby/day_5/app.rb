@@ -15,7 +15,8 @@ class Day5
 
   def run
     {
-      overlaps_count: count_overlaps(input)
+      overlaps_count: count_all_overlaps(input)
+      # all_overlaps_count: count_all_overlaps(input)
     }
   end
 
