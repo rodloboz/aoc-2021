@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Segment
   def initialize(points)
     @left = points[0]

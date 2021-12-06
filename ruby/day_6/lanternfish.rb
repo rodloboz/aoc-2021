@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Lanternfish
   def self.new_school(initial_state)
     new(initial_state)
@@ -14,7 +16,7 @@ class Lanternfish
     school.values.sum
   end
 
-  def respawn_until(days)
+  def respawn(days)
     days.times do
       temp_map = Hash.new(0)
       temp_map[6] += school[0]
@@ -29,12 +31,4 @@ class Lanternfish
   end
 
   attr_reader :school
-end
-
-
-require 'byebug'
-def respawn(fish, days)
-  lanternfish = Lanternfish.new_school(fish)
-  lanternfish.respawn_until(days)
-  lanternfish.total_count
 end
