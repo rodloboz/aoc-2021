@@ -7,8 +7,8 @@ class Lanternfish
 
   def initialize(initial_state)
     @school = Hash.new(0)
-    initial_state.each do |timer|
-      school[timer] += 1
+    initial_state.each do |key|
+      school[key] += 1
     end
   end
 
@@ -19,12 +19,13 @@ class Lanternfish
   def respawn(days)
     days.times do
       temp_map = Hash.new(0)
-      temp_map[6] += school[0]
-      temp_map[8] += school[0]
       school.each_key do |key|
-        next if key.zero?
-
-        temp_map[key - 1] += school[key]
+        if key.zero?
+          temp_map[6] += school[0]
+          temp_map[8] += school[0]
+        else
+          temp_map[key - 1] += school[key]
+        end
       end
       @school = temp_map.clone
     end
