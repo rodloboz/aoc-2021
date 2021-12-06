@@ -15,11 +15,11 @@ RSpec.describe Lanternfish do
     end
   end
 
-  describe '#respawn' do
+  describe '#respawn_days' do
     it 'multiplies the fish in the school until the given days' do
       expect(lanternfish.total_count).to eq(5)
 
-      lanternfish.respawn(80)
+      lanternfish.respawn_days(80)
 
       expect(lanternfish.total_count).to eq(5934)
     end

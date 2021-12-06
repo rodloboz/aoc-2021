@@ -16,7 +16,7 @@ class Lanternfish
     school.values.sum
   end
 
-  def respawn(days)
+  def respawn_days(days)
     days.times do
       temp_map = Hash.new(0)
       school.each_key do |key|
