@@ -14,8 +14,8 @@ end
 def enhanced_fuel_cost(input)
   mean = (input.sum.to_f / input.size).floor
   mean_cost = total_cost(input, mean) { |n|  (n * (n + 1) / 2) }
-  mean_cost2 = total_cost(input, mean + 1) { |n|  (n * (n + 1) / 2) }
-  mean_cost < mean_cost2 ? mean_cost : mean_cost2
+  mean_plus_one_cost = total_cost(input, mean + 1) { |n|  (n * (n + 1) / 2) }
+  mean_cost < mean_plus_one_cost ? mean_cost : mean_plus_one_cost
 end
 
 def total_cost(numbers, target)
