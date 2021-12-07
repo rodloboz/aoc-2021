@@ -1,5 +1,5 @@
 import unittest
-from crabs import fuel_cost, enhanced_fuel_cost
+from calem import fuel_cost, enhanced_fuel_cost
 
 class TestFuelCost(unittest.TestCase):
   def test_fuel_cost(self):
