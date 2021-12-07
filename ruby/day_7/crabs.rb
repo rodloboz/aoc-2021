@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
 def fuel_cost(input)
-  sorted = input.sort
-  half = (sorted.size / 2.to_f).floor
-  total_cost(input, sorted[half])
+  median = median(input)
+  total_cost(input, median)
+end
+
+def median(array)
+  sorted = array.sort
+  len = sorted.length
+  ((sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0).floor
 end
 
 def enhanced_fuel_cost(input)
-  costs = {}
-  (input.min..input.max).each do |target|
-    costs[target] = total_cost(input, target) do |moves|
-      (moves * (moves + 1) / 2)
-    end
-  end
-  costs.values.min
+  mean = (input.sum.to_f / input.size).floor
+  mean_cost = total_cost(input, mean) { |n|  (n * (n + 1) / 2) }
+  mean_cost2 = total_cost(input, mean + 1) { |n|  (n * (n + 1) / 2) }
+  mean_cost < mean_cost2 ? mean_cost : mean_cost2
 end
 
 def total_cost(numbers, target)
