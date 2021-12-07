@@ -16,9 +16,10 @@ def enhanced_fuel_cost(input)
   mean = (input.sum.to_f / input.size).floor
 
   mean_cost = total_cost(input, mean, &cost_increase_rate)
+  mean_cost_minus_one = total_cost(input, mean - 1, &cost_increase_rate)
   mean_plus_one_cost = total_cost(input, mean + 1, &cost_increase_rate)
 
-  mean_cost < mean_plus_one_cost ? mean_cost : mean_plus_one_cost
+  [mean_cost, mean_cost_minus_one, mean_plus_one_cost].min
 end
 
 def total_cost(numbers, target)
