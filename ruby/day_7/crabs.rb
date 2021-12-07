@@ -7,8 +7,17 @@ def fuel_cost(input)
 end
 
 def enhanced_fuel_cost(input)
-  half = (input.size / 2.to_f).floor
-  total_cost(input, half) { |moves| (moves * (moves + 1) / 2) }
+  sorted = input.map { |n| n * (n + 1) }.sort
+  half = (sorted.size / 2.to_f).floor
+  costs = {}
+  (input.min..input.max).each do |target|
+    costs[target] = input.reduce(0) do |cost, number|
+      moves = (target - number).abs
+      cost + (moves * (moves + 1) / 2)
+    end
+  end
+
+  costs.values.min
 end
 
 def total_cost(numbers, target)
