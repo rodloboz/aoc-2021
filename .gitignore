@@ -1,2 +1,5 @@
 .byebug-history
 .ipynb_checkpoints
+.pytest_cache
+.DS_STORE
+__pycache__/
