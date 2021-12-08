@@ -53,5 +53,6 @@ def co2_scrubber_rating(inputs)
 end
 
 def life_support_rating(inputs)
+  puts "o2=#{o2_generator_rating(inputs)}; co2=#{co2_scrubber_rating(inputs)}"
   o2_generator_rating(inputs) * co2_scrubber_rating(inputs)
 end
