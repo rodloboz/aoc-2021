@@ -19,7 +19,7 @@ class Day6
     lanternfish.respawn_days(80)
     count_after80 = lanternfish.total_count
 
-    lanternfish.respawn_days(256 - 80)
+    lanternfish.respawn_days(256)
     count_after256 = lanternfish.total_count
 
     {
