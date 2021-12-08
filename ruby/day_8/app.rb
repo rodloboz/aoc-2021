@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './segment_search'
-
+require 'byebug'
 class Day8
   FILEPATH = '../../data/day_8/input.txt'
 
