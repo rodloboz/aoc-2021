@@ -15,9 +15,11 @@ class Day8
 
   def run
     easy_digits = count_easy_digits(input)
+    decoded_entries = decode_entries(input)
 
     {
-      easy_digits: easy_digits
+      easy_digits: easy_digits,
+      decoded_entries: decoded_entries
     }
   end
 
@@ -27,10 +29,11 @@ class Day8
 
   def load_input
     filepath = File.expand_path(FILEPATH, File.dirname(__FILE__))
-    @input = File.read(filepath)
+    @input = File.readlines(filepath).map(&:strip)
   end
 end
 
 result = Day8.run
 
 puts "Total number of easy digits: #{result[:easy_digits]}"
+puts "Total sum of the decoded entries is: #{result[:decoded_entries]}"

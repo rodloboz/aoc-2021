@@ -2,7 +2,6 @@
 
 require_relative './digit'
 require_relative './entry'
-require 'byebug'
 
 def count_easy_digits(entries)
   outputs = entries.map { |entry| entry.split(' | ').last.split }.flatten
