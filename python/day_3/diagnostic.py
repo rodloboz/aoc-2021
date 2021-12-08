@@ -1,6 +1,20 @@
 # pylint: disable=missing-docstring
-
 import os
+
+def main():
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, '../../data/day_3/input.txt')
+
+    gamma, epsilon = diagnostic(filename)
+    power = int(gamma, 2) * int(epsilon, 2)
+
+    o2rating = oxygen_generator_rating(filename)
+    co2rating = co2_scrubber_rating(filename)
+    o2_rating = int(o2rating, 2)
+    co2_rating = int(co2rating, 2)
+
+    print(f"Part I: power={power} | Part II o2={o2_rating}; co2_rating={co2_rating}")
+
 
 def file_reader(file):
     while True:
@@ -77,15 +91,4 @@ def co2_scrubber_rating(filepath):
 
 
 if __name__ == '__main__':
-    dirname = os.path.dirname(__file__)
-    filename = os.path.join(dirname, '../../data/day_3/input.txt')
-
-    gamma, epsilon = diagnostic(filename)
-    power = int(gamma, 2) * int(epsilon, 2)
-
-    o2rating = oxygen_generator_rating(filename)
-    co2rating = co2_scrubber_rating(filename)
-    o2_rating = int(o2rating, 2)
-    co2_rating = int(co2rating, 2)
-
-    print(f"Part I: power={power} | Part II o2={o2_rating}; co2_rating={co2_rating}")
+    main()
