@@ -5,8 +5,8 @@ def fuel_cost(input)
   total_cost(input, median)
 end
 
-def median(array)
-  sorted = array.sort
+def median(numbers)
+  sorted = numbers.sort
   len = sorted.length
   ((sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0).floor
 end
