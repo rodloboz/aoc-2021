@@ -17,14 +17,13 @@ class Point
     @x = x
     @y = y
     @height = height
-    @adjacent = []
 
     raise InvalidPoint, 'Invalid coordinates!' if x.nil? || y.nil?
     raise InvalidPoint, 'Invalid height!' if height.nil? || height.negative? || height > 9
   end
 
   def coordinates
-    { x: @x, y: @y }
+    [@x, @y]
   end
 
   def low_point?

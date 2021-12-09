@@ -19,7 +19,7 @@ RSpec.describe Grid do
 
   it 'plots the points' do
     expect(grid.points.size).to eq(heightmap.flatten.size)
-    expect(grid.points.first.height).to eq(2)
+    expect(grid.points[[0, 0].to_s].height).to eq(2)
   end
 
   describe '#find_by_coordinates' do

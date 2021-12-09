@@ -9,7 +9,7 @@ RSpec.describe Day9 do
     it 'returns the correct results' do
       expected = {
         risk_level: 504,
-        basin_sizes: 1134
+        basin_sizes: 1_558_722
       }
       expect(described_class.run).to eq(expected)
     end
