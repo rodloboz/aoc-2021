@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'forwardable'
+
 class Point
   class InvalidPoint < StandardError; end
 
@@ -16,7 +17,6 @@ class Point
     @x = x
     @y = y
     @height = height
-    @adjacent = []
 
     raise InvalidPoint, 'Invalid coordinates!' if x.nil? || y.nil?
     raise InvalidPoint, 'Invalid height!' if height.nil? || height.negative? || height > 9
@@ -37,8 +37,4 @@ class Point
   def eql?(other)
     coordinates == other.coordinates
   end
-
-  private
-
-  def adjacent_heights; end
 end
