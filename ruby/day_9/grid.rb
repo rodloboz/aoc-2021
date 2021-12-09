@@ -8,17 +8,16 @@ class Grid
 
   def initialize(heightmap)
     @heightmap = heightmap
-    @points = Set.new
+    @points = {}
     plot_points
   end
 
   def find_by_coordinates(x, y)
-    points.find { |point| point.coordinates[:x] == x && point.coordinates[:y] == y }
+    points[[x, y].to_s]
   end
 
   def adjacent_to(point)
-    x = point.coordinates[:x]
-    y = point.coordinates[:y]
+    x, y = point.coordinates
     up = find_by_coordinates(x, y - 1)
     right = find_by_coordinates(x + 1, y)
     down = find_by_coordinates(x, y + 1)
@@ -28,7 +27,7 @@ class Grid
   end
 
   def low_points
-    @low_points ||= points.select(&:low_point?)
+    @low_points ||= points.values.select(&:low_point?)
   end
 
   def risk_level
@@ -48,7 +47,7 @@ class Grid
       row.each_with_index do |height, x|
         point = Point.new(x, y, height)
         point.grid = self
-        points << point
+        points[point.coordinates.to_s] = point
       end
     end
   end
