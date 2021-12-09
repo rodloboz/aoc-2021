@@ -219,6 +219,27 @@ digits = "abcefg cf acdeg acdfg bcdf abdfg abdefg acf abcdefg abcdfg"
 master_key = Cypher.generate_master_key(digits)
 ```
 
+We can arrange a matrix with the segment letter and the digits from 0 to 9.
+  The sum of each column in the matrix can be used to normalize each digit. This normalized key will be constant regardless of
+  the permutation of the matrix.
+
+`````
+      a b c d e f g
+  0   1 1 1 0 1 1 1
+  1   0 0 1 0 0 1 0
+  2   1 0 1 1 1 0 1
+  3   1 0 1 1 0 1 1
+  4   0 1 1 1 0 1 0
+  5   1 1 0 1 0 1 1
+  6   1 1 0 1 1 1 1
+  7   1 0 1 0 0 1 0
+  8   1 1 1 1 1 1 1
+  9   1 1 1 1 0 1 1
+  =   8 6 8 7 4 9 7
+  ````
+Counting the frequency of each segment letter in any given string of signals, we can create a map that will match the generated master key.
+`````
+
 ```elixir
 input
 |> Kino.Input.read()
