@@ -71,7 +71,7 @@ RSpec.describe Point do
   end
 
   describe '#coordinates' do
-    it 'returns de x,y coordinates' do
+    it 'returns the x,y coordinates' do
       expect(point.coordinates).to eq([6, 8])
     end
   end
