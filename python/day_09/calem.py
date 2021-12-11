@@ -4,7 +4,7 @@ import numpy as np
 
 def main():
     dirname = os.path.dirname(__file__)
-    filename = os.path.join(dirname, "../../data/day_9/input.txt")
+    filename = os.path.join(dirname, "../../data/day_09/input.txt")
     with open(filename, "r") as f:
         inp = f.read()
 
@@ -44,7 +44,7 @@ def append_basins(inp,basins,i,j):
         for ind,basin in enumerate(basins):
             basins[ind] = list(set(basin))
     return basins
-    
+
 
 
 def challenge1(inp, return_basins=False):
@@ -88,20 +88,20 @@ def challenge1(inp, return_basins=False):
 def challenge2(inp):
     inp,basins = challenge1(inp, return_basins=True)
     print("----Calculating Solution 2----")
-    
+
     rev = 1
     loop = 1
     while loop > 0:
         tmp = sum([len(basin) for basin in basins])
-        
+
         for i in range(inp.shape[0])[::rev]:
             for j in range(inp.shape[1])[::rev]:
                 basins = append_basins(inp,basins,i,j)
-                
+
         if sum([len(basin) for basin in basins]) == tmp:
             loop = 0
         rev = rev*-1
-    
+
     output = np.prod(sorted([len(basin) for basin in basins])[-3:])
     print(output)
     return output
