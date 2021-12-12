@@ -173,4 +173,92 @@ lines =
   |> Kino.Input.read()
   |> String.split("\n", trim: true)
   |> Enum.map(&Recursive.recur/1)
+
+scores =
+  lines
+  |> Enum.filter(fn
+    {:halt, _} -> false
+    _ -> true
+  end)
+  |> Enum.map(fn unmatched ->
+    unmatched
+    |> Enum.reverse()
+    |> Enum.reduce(0, fn
+      "(", score -> score * 5 + 1
+      "[", score -> score * 5 + 2
+      "{", score -> score * 5 + 3
+      "<", score -> score * 5 + 4
+    end)
+  end)
+  |> Enum.sort()
+
+scores |> Enum.fetch!(div(length(scores), 2))
+```
+
+## Alternative Solution
+
+https://github.com/josevalim/aoc/blob/main/2021/day-10.livemd
+
+## Part 1
+
+```elixir
+defmodule Syntax do
+  def parse(line), do: parse(line, [])
+
+  # Opening
+  defp parse(<<?(, rest::binary>>, stack), do: parse(rest, [?) | stack])
+  defp parse(<<?[, rest::binary>>, stack), do: parse(rest, [?] | stack])
+  defp parse(<<?{, rest::binary>>, stack), do: parse(rest, [?} | stack])
+  defp parse(<<?<, rest::binary>>, stack), do: parse(rest, [?> | stack])
+
+  # Closing
+  defp parse(<<char, rest::binary>>, [char | stack]), do: parse(rest, stack)
+
+  # Base/error cases
+  defp parse(<<char, _rest::binary>>, _stack), do: {:corrupted, char}
+  defp parse(<<>>, []), do: :ok
+  defp parse(<<>>, stack), do: {:incomplete, stack}
+end
+
+lines =
+  input
+  |> Kino.Input.read()
+  |> String.split("\n", trim: true)
+
+:ok
+```
+
+```elixir
+error_points = %{
+  ?) => 3,
+  ?] => 57,
+  ?} => 1197,
+  ?> => 25137
+}
+
+Enum.sum(
+  for line <- lines,
+      {:corrupted, char} <- [Syntax.parse(line)],
+      do: Map.fetch!(error_points, char)
+)
+```
+
+## Part 2
+
+```elixir
+completion_pts = %{
+  ?) => 1,
+  ?] => 2,
+  ?} => 3,
+  ?> => 4
+}
+
+scores =
+  Enum.sort(
+    for line <- lines,
+        {:incomplete, chars} <- [Syntax.parse(line)],
+        do: Enum.reduce(chars, 0, fn char, acc -> acc * 5 + Map.fetch!(completion_pts, char) end)
+  )
+
+Enum.fetch!(scores, div(length(scores), 2))
 ```
