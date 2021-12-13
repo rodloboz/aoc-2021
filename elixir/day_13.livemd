@@ -176,7 +176,7 @@ defmodule Paper do
   end
 
   def inspect(points) do
-    {_, {width, height}} = Enum.min_max(points)
+    {width, height} = Enum.max(points)
 
     for y <- 0..height do
       Enum.map(0..width, fn x ->
