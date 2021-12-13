@@ -26,7 +26,7 @@ defmodule CaveSystem1 do
   defp visit(graph, current_node, current_path) do
     graph[current_node]
     |> Enum.flat_map(fn node ->
-      if Enum.member?(current_path, node) and node == String.downcase(node) do
+      if Enum.member?(current_path, node) and lowercased?(node) do
         []
       else
         visit(graph, node, [node | current_path])
@@ -48,6 +48,8 @@ defmodule CaveSystem1 do
         |> Map.update(dest, [src], fn list -> [src | list] end)
     end)
   end
+
+  defp lowercased?(node), do: String.downcase(node, :ascii) == node
 end
 
 edges =
@@ -128,7 +130,7 @@ defmodule CaveSystem2 do
           elem(e, 0) == node
         end)
 
-      if is_nil(visited) or node != String.downcase(node) do
+      if is_nil(visited) or !lowercased?(node) do
         visit(graph, node, [{node, 1} | current_path])
       else
         cond do
@@ -154,6 +156,8 @@ defmodule CaveSystem2 do
         |> Map.update(dest, [src], fn list -> [src | list] end)
     end)
   end
+
+  defp lowercased?(node), do: String.downcase(node, :ascii) == node
 end
 
 edges
